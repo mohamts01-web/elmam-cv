@@ -1,0 +1,17 @@
+{
+  "testedAt": "2026-11-01T02:58:53.979Z",
+  "environment": "sandbox",
+  "realMoneyCharged": false,
+  "checks": {
+    "checkout": true,
+    "topup": true,
+    "upgrade": true,
+    "portal": true,
+    "cancelRenewalRetainsPaidPeriod": true,
+    "upgradePreservesOtherSources": true,
+    "sharedDraftLimit": true
+  },
+  "sandboxGrantsRevoked": true,
+  "legacyZidPreserved": true,
+  "liveCheckoutTested": false
+}

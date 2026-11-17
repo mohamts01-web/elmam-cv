@@ -1,0 +1,175 @@
+.cv-home .hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  min-height: 0;
+  padding-block: clamp(36px, 6vw, 88px);
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.cv-home .hero-copy h1 {
+  font-size: clamp(2.4rem, 4.4vw, 4.75rem);
+  line-height: 1.23;
+  letter-spacing: normal;
+  margin-block: 16px 20px;
+}
+
+.cv-home .hero-copy > p { max-width: 34ch; color: #475569; }
+.cv-home .hero-trust { color: #475569; font-size: .8125rem; }
+
+.cv-home .hero-art {
+  isolation: isolate;
+  min-width: 0;
+  height: 530px;
+  overflow: hidden;
+  border-radius: clamp(20px, 3vw, 38px);
+  margin: 0;
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at 8% 84%, #176e70, transparent 55%),
+    radial-gradient(ellipse at 92% 8%, #25547b, transparent 50%), #10263d;
+}
+
+.cv-home .hero-orbit {
+  width: 88%;
+  height: auto;
+  aspect-ratio: 1;
+  border-color: #a4e8df55;
+  background: radial-gradient(circle, #89ebd620, transparent 70%);
+}
+.cv-home .hero-orbit::after { inset: 12%; border-color: #a4e8df47; }
+.cv-home .hero-paper { transform: rotate(-4deg); height: 394px; box-shadow: 0 25px 60px #07182877; }
+.cv-home .hero-art .note-one { inset: 24px 16px auto auto; }
+.cv-home .hero-art .note-two { inset: auto auto 24px 16px; }
+.cv-home .hero-art .floating-note { border-radius: 18px; }
+
+.cv-home .three-cards article,
+.cv-home .template-gallery button,
+.documents-page .draft-card {
+  border: 1px solid #dbe5ea;
+  border-radius: 20px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.cv-home .template-gallery button:hover,
+.documents-page .draft-card:focus-within { border-color: #538981; box-shadow: 0 8px 24px #10263d12; }
+.documents-page .page-heading { padding: clamp(18px, 4vw, 38px); background: #eef6f6; border-radius: 24px; }
+.documents-page .page-heading h1 { text-wrap: balance; }
+.documents-page .membership-strip { margin-block-start: 22px; }
+.wizard .wizard-progress { accent-color: #16766d; }
+.workspace .editor-header { box-shadow: 0 2px 12px #10263d0d; }
+.workspace .assistant-intro { padding: 14px; border-radius: 16px; background: #eef6f6; }
+
+:is(.cv-home, .documents-page, .workspace, .wizard) :is(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid #16766d;
+  outline-offset: 3px;
+}
+
+@media (max-width: 820px) {
+  .cv-home .hero { grid-template-columns: minmax(0, 1fr); }
+  .cv-home .hero-art { height: clamp(340px, 74vw, 470px); }
+  .cv-home .hero-copy > p { margin-inline: auto; }
+  .cv-home .hero-paper { transform: rotate(-4deg) scale(.8); }
+}
+
+@media (max-width: 420px) {
+  .cv-home .hero-actions { flex-wrap: wrap; }
+  .cv-home .hero-art .floating-note { padding: 7px 9px; }
+  .cv-home .hero-art .note-one { inset: 12px 10px auto auto; }
+  .cv-home .hero-art .note-two { inset: auto auto 12px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-home .template-gallery button, .documents-page .draft-card { transition: none; }
+}
+
+.resume-diagnosis { margin-block: 0 14px; padding: 12px; border: 1px solid #dbe5ea; border-radius: 14px; background: #f4f9f9; }
+.resume-diagnosis summary { cursor: pointer; font-weight: 700; color: #10263d; }
+.resume-diagnosis summary span { float: inline-end; color: #176661; }
+.resume-diagnosis p, .resume-diagnosis small { color: #475569; }
+.resume-diagnosis h3 { margin-block: 12px 6px; font-size: .9rem; }
+.resume-diagnosis button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px; margin-block: 5px; text-align: start; background: white; border: 1px solid #dbe5ea; border-radius: 8px; }
+.resume-diagnosis small { display: block; }
+.resume-diagnosis ul { display: grid; gap: 6px; padding: 0; list-style: none; }
+.resume-diagnosis li { display: flex; gap: 6px; align-items: center; }
+
+.targeted-review { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; gap: 14px; }
+.review-vacancy { background: #eef6f6; border: 1px solid #dbe5ea; border-radius: 14px; padding: 14px; overflow-wrap: anywhere; }
+.review-vacancy p { margin-block: 8px; white-space: pre-wrap; }
+.review-vacancy a { display: inline-block; margin-block-start: 10px; text-decoration: underline; }
+@media (max-width: 700px) { .targeted-review { grid-template-columns: minmax(0, 1fr); } }
+
+.interview-practice { margin-block: 24px; padding: clamp(16px, 4vw, 28px); background: #eef6f6; border: 1px solid #dbe5ea; border-radius: 18px; }
+.interview-practice summary { cursor: pointer; font-weight: 700; }
+.interview-practice fieldset { display: grid; gap: 8px; min-width: 0; border: 0; padding: 0; margin-block: 16px; }
+.interview-practice legend { margin-block-end: 8px; color: #176661; }
+.interview-practice label { font-weight: 700; }
+.interview-practice textarea { width: 100%; padding: 12px; font: inherit; border: 1px solid #758b94; border-radius: 10px; }
+.interview-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 14px; }
+.interview-library { margin-block: 36px; }
+.interview-library .interview-practice { margin-block: 12px; }
+.interview-requirement { padding: 10px; border-inline-start: 3px solid #176661; background: white; overflow-wrap: anywhere; }
+.job-interview-link { margin-inline-start: 12px; }
+.draft-library-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 14px; }
+.draft-library-filter [aria-pressed="true"] { background: #eef6f6; border-color: #176661; color: #145651; }
+.draft-target-label { display: block; margin-block-start: 5px; overflow-wrap: anywhere; }
+.onboarding-import { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-block: 20px; padding: 16px; text-align: start; background: #eef6f6; border: 1px dashed #628a8d; border-radius: 16px; }
+.onboarding-import h2 { font-size: 1.05rem; margin: 0; }
+.onboarding-import p { margin: 6px 0 0; color: #475569; overflow-wrap: anywhere; }
+.onboarding-import-status { overflow-wrap: anywhere; }
+.onboarding-role form { display: grid; gap: 16px; max-width: 460px; margin: 24px auto; text-align: start; }
+.onboarding-role form button { justify-self: start; }
+.linkedin-kit { padding: 14px; border-radius: 14px; border: 1px solid #dbe5ea; background: #f4f9f9; }
+.linkedin-kit summary { cursor: pointer; font-weight: 700; }
+.linkedin-kit p { color: #475569; margin-block: 8px; }
+.linkedin-field { display: grid; gap: 6px; margin-block: 12px; }
+.linkedin-field textarea { display: block; width: 100%; padding: 8px; border: 1px solid #758b94; border-radius: 8px; font: inherit; }
+.linkedin-field button { justify-self: start; }
+.tracker-form { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; margin-block-start: 12px; }
+.tracker-form .field { flex: 1 1 160px; margin: 0; }
+.tracker-form [role="status"] { width: 100%; margin: 0; }
+:root {
+  --navy: #002754;
+  --teal: #007680;
+  --mint: #0496a1;
+  --muted: #4a5b70;
+  color: #002754;
+  background: #fff;
+}
+.elmam-brand-image { display: block; object-fit: contain; }
+#root :is(h1, h2, h3) { font-family: Cairo, Tajawal, Arial, sans-serif; }
+#root :is(.brand-en, [lang="en"]) { font-family: Poppins, Tajawal, Arial, sans-serif; }
+.career-artwork { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.career-ink { stroke-dasharray: 1; animation: career-ink-draw 1.6s ease-out both; }
+.cv-home .hero-backdrop { background: radial-gradient(ellipse at 12% 90%, #005c70, transparent 58%), #001a3d; }
+.site-header, .workspace .editor-header { border-block-end: 1px solid #dae5ed; background: #fff; }
+.wizard .wizard-top { padding: 12px 16px; border: 1px solid #dae5ed; border-radius: 16px; background: #eef4f8; }
+.wizard .wizard-progress { background: #dce8ef; }
+.wizard .wizard-progress > span { background: #0496a1; }
+.wizard .status-options > button, .wizard .wizard-fields { border: 1px solid #dae5ed; border-radius: 18px; }
+.wizard .status-options > button.selected { border-color: #007680; background: #eef4f8; }
+.workspace .context-panel, .workspace .editor-rail { background: #fff; border-color: #dae5ed; }
+.workspace .editor-rail > button.active { background: #eef4f8; color: #002754; box-shadow: inset -3px 0 #0496a1; }
+.documents-page .page-heading, .job-target-card, .workspace .assistant-intro { background: #eef4f8; }
+.starter-plan .starter-plan-summary { background: #001a3d; color: white; }
+.starter-plan-summary :is(h2, p, small) { color: inherit; }
+.policy-page > h1, .plan-heading > h1 { color: #002754; text-wrap: balance; }
+.cv-home .hero h1 em { text-decoration: underline; text-decoration-color: #0496a1; text-decoration-thickness: 3px; text-underline-offset: .18em; }
+@keyframes career-ink-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .career-ink { animation: none; } }
+.tailoring-example { padding-block: clamp(30px, 5vw, 72px); }
+.tailoring-options { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 18px; }
+.tailoring-options [aria-pressed="true"] { border-color: #007680; background: #eef4f8; color: #002754; }
+.tailoring-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tailoring-columns article { padding: 18px; border: 1px solid #dae5ed; border-radius: 16px; background: #eef4f8; }
+.tailoring-columns article:last-child { background: #001a3d; color: white; }
+.tailoring-columns mark { color: inherit; background: transparent; text-decoration: underline 3px #0496a1; text-underline-offset: .3em; }
+@media (max-width: 720px) { .tailoring-columns { grid-template-columns: 1fr; } }
+.cv-home .hero:has(.hero-plotter) { display: flex; flex-direction: column; text-align: center; padding-block: clamp(30px, 5vw, 68px); }
+.cv-home .hero:has(.hero-plotter) :is(.hero-actions,.hero-trust) { justify-content: center; }
+.cv-home .hero:has(.hero-plotter) .hero-copy > p { max-width: 54ch; margin-inline: auto; }
+.cv-home .hero-art.hero-plotter { width: 100%; height: auto; aspect-ratio: 1100 / 650; max-height: 635px; }
+.hero-plotter .career-artwork { font-family: Cairo, Tajawal, sans-serif; }
+.hero-plotter .career-underline { animation-duration: 2.4s; }
+.cv-home .three-cards .template-step-icon { width: 64px; height: 64px; color: #007680; }

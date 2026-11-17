@@ -1,0 +1,232 @@
+.inline-paper {
+  margin-top: 48px !important;
+  isolation: isolate;
+}
+.paper-inline-toolbar {
+  position: absolute;
+  z-index: 8;
+  inset-inline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: #fff;
+  border: 1px solid #d8e9e6;
+  box-shadow: 0 3px 12px #163c5218;
+  border-radius: 10px;
+  padding: 6px;
+  flex-wrap: wrap;
+  color: #244b60;
+  font-family: Tajawal, Arial, sans-serif;
+  font-size: 11px;
+}
+.paper-inline-toolbar > strong {
+  padding: 3px 7px;
+  color: #087f75;
+  font-size: 11px;
+}
+.paper-inline-toolbar button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 7px;
+  min-width: 29px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.paper-inline-toolbar button:hover,
+.paper-inline-toolbar button:focus-visible {
+  background: #e7f7f1;
+  outline: 1px solid #a4d9cd;
+}
+.paper-section-toggle {
+  position: absolute;
+  right: 0;
+  top: -42px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff;
+  border: 1px solid #d8e9e6;
+  padding: 8px 13px;
+  border-radius: 9px;
+  color: #147f75;
+  font-size: 12px;
+  z-index: 7;
+}
+.paper-sections-menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 11;
+  width: 230px;
+  padding: 15px;
+  display: grid;
+  gap: 5px;
+  background: white;
+  border: 1px solid #d8e9e6;
+  border-radius: 13px;
+  box-shadow: 0 10px 30px #17365224;
+}
+.paper-sections-menu strong {
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+.paper-sections-menu button {
+  border: 0;
+  background: #f6f9fa;
+  padding: 9px 12px;
+  text-align: right;
+  border-radius: 7px;
+  font-size: 12px;
+}
+.inline-link-form {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  padding: 5px;
+}
+.inline-link-form input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #c7dadb;
+  padding: 8px;
+  border-radius: 6px;
+}
+.inline-delete-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 7px;
+  background: #fff3f0;
+}
+.inline-hint {
+  width: 100%;
+  text-align: center;
+  color: #69828a;
+  font-size: 10px;
+}
+.course-description {
+  font-size: 12px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  color: #58717e;
+  margin-bottom: 0;
+}
+.import-review-card {
+  padding: 18px;
+  border: 1px solid #d9e8e4;
+  background: #f5faf8;
+  border-radius: 14px;
+}
+.import-review-card h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.import-review-card p {
+  font-size: 13px;
+  line-height: 1.9;
+}
+.import-counts {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.import-counts span {
+  font-size: 11px;
+  padding: 6px 9px;
+  border: 1px solid #dbe8e7;
+  background: white;
+  border-radius: 16px;
+}
+.review-suggestion {
+  border-top: 1px solid #dbe8e7;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.review-suggestion h5 {
+  font-size: 14px;
+  margin: 0 0 6px;
+}
+.review-suggestion p {
+  margin: 0 0 8px;
+  color: #69818b;
+  font-size: 12px;
+}
+.review-suggestion button {
+  font-size: 11px;
+}
+.suggestion-impact {
+  font-size: 10px;
+  color: #d25660;
+  margin-inline-start: 8px;
+}
+.apply-section-button {
+  margin-top: 10px;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 9px 13px;
+  border: 1px solid #bcded1;
+  border-radius: 8px;
+  background: white;
+  color: #167967;
+  font-size: 12px;
+}
+.apply-section-button:disabled {
+  color: #879b96;
+  background: #f4f8f7;
+}
+.change-list section.applied {
+  opacity: 0.65;
+}
+.review-read-summary {
+  padding: 15px 28px;
+  background: #f5faf8;
+  border-bottom: 1px solid #e4eeea;
+  font-size: 13px;
+}
+.review-read-summary .import-counts {
+  margin-bottom: 0;
+}
+.inline-paper .paper-frame {
+  z-index: 1;
+}
+@media (max-width: 760px) {
+  .paper-inline-toolbar {
+    padding: 4px;
+    gap: 1px;
+    justify-content: flex-start;
+  }
+  .paper-inline-toolbar button {
+    padding: 5px;
+    min-width: 25px;
+  }
+  .paper-inline-toolbar > strong {
+    font-size: 10px;
+  }
+  .inline-paper {
+    margin-top: 72px !important;
+  }
+  .paper-section-toggle {
+    font-size: 11px;
+  }
+  .paper-sections-menu {
+    width: min(230px, 85vw);
+  }
+  .paper-inline-toolbar svg {
+    width: 13px;
+    height: 13px;
+  }
+  .review-read-summary {
+    padding: 12px 18px;
+  }
+}

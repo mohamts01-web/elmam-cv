@@ -1,0 +1,16 @@
+[functions.etmam-api]
+verify_jwt = false
+
+[functions.etmam-telegram]
+verify_jwt = false
+
+[functions.etmam-maintenance]
+verify_jwt = false
+
+# Verified with Paddle-Signature on the exact request body.
+[functions.etmam-paddle-webhook]
+verify_jwt = false
+
+# Whop signs the original request body.
+[functions.etmam-whop-webhook]
+verify_jwt = false

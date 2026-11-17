@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-01T02:54:51.105Z",
+  "results": [
+    {
+      "name": "verified email identity and production CORS",
+      "passed": true
+    },
+    {
+      "name": "Zid-compatible activation and idempotent redemption",
+      "passed": true
+    },
+    {
+      "name": "shared two-draft limit",
+      "passed": true
+    },
+    {
+      "name": "stale saves rejected",
+      "passed": true
+    },
+    {
+      "name": "reviewable improvement, one charge, stale proposal protection",
+      "passed": true
+    },
+    {
+      "name": "English translation proposal",
+      "passed": true
+    },
+    {
+      "name": "document text import proposal and shared AI counter",
+      "passed": true
+    },
+    {
+      "name": "approved export through private storage and signed URL",
+      "passed": true
+    },
+    {
+      "name": "cached export reused",
+      "passed": true
+    },
+    {
+      "name": "delete a draft with completed AI and export jobs",
+      "passed": true
+    },
+    {
+      "name": "Telegram link fits platform payload limit",
+      "passed": true
+    }
+  ],
+  "emailDeliveryTested": false
+}

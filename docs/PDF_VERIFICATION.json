@@ -1,0 +1,38 @@
+[
+  {
+    "file": "ar-classic.pdf",
+    "pages": 1,
+    "textCharacters": 713,
+    "A4": true
+  },
+  {
+    "file": "ar-compact.pdf",
+    "pages": 2,
+    "textCharacters": 4076,
+    "A4": true
+  },
+  {
+    "file": "ar-modern.pdf",
+    "pages": 1,
+    "textCharacters": 713,
+    "A4": true
+  },
+  {
+    "file": "en-classic.pdf",
+    "pages": 2,
+    "textCharacters": 1287,
+    "A4": true
+  },
+  {
+    "file": "en-compact.pdf",
+    "pages": 2,
+    "textCharacters": 4438,
+    "A4": true
+  },
+  {
+    "file": "en-modern.pdf",
+    "pages": 2,
+    "textCharacters": 1287,
+    "A4": true
+  }
+]

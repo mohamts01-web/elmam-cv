@@ -1,0 +1,38 @@
+[
+  {
+    "language": "ar",
+    "template": "classic",
+    "bytes": 34985,
+    "path": "private/pdf-review/ar-classic.pdf"
+  },
+  {
+    "language": "ar",
+    "template": "modern",
+    "bytes": 35003,
+    "path": "private/pdf-review/ar-modern.pdf"
+  },
+  {
+    "language": "ar",
+    "template": "compact",
+    "bytes": 72792,
+    "path": "private/pdf-review/ar-compact.pdf"
+  },
+  {
+    "language": "en",
+    "template": "classic",
+    "bytes": 32356,
+    "path": "private/pdf-review/en-classic.pdf"
+  },
+  {
+    "language": "en",
+    "template": "modern",
+    "bytes": 32346,
+    "path": "private/pdf-review/en-modern.pdf"
+  },
+  {
+    "language": "en",
+    "template": "compact",
+    "bytes": 58536,
+    "path": "private/pdf-review/en-compact.pdf"
+  }
+]

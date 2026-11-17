@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-30T22:45:44.920Z",
+  "bot": "etmam_cv_bot",
+  "webhook": "https://okwqqkcifvmaoarlemix.supabase.co/functions/v1/etmam-telegram",
+  "pendingUpdatesPreserved": 0,
+  "pendingUpdateCount": 0,
+  "localPollerRunning": false
+}

@@ -1,0 +1,13 @@
+@font-face{font-family:Tajawal;src:url("/fonts/tajawal-arabic-400-normal.woff2");font-display:swap}
+:root{font:1rem/1.8 Tajawal,system-ui,sans-serif;color:#002754;background:#eef4f8}
+body{margin:0}
+header,main{max-width:48rem;margin:auto;padding:1.25rem}
+header,nav{display:flex;gap:1rem;flex-wrap:wrap}
+header{justify-content:space-between;font-weight:700}
+main{background:#fff;border-radius:1.25rem;padding:clamp(1.25rem,4vw,3rem)}
+h1{font-size:clamp(1.8rem,5vw,2.9rem);line-height:1.4}
+h2{font-size:1.25rem}
+h1,h2{font-family:Cairo,Tajawal,system-ui,sans-serif}
+section{border-block-start:1px solid #dce8e9;margin-block:1rem;padding-block-start:.5rem}
+a{color:#086456}
+.action{display:inline-block;background:#087063;color:#fff;text-decoration:none;border-radius:.6rem;padding:.55rem 1rem;margin-block:1rem;font-weight:700}

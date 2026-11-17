@@ -1,0 +1,15 @@
+Hello Polar Compliance Team,
+
+We request a manual review of QALVA (eceea63c-dffd-45f8-81a4-a22b35aa1493) for ETMAM, our self-service CV software at https://etmam-cv.netlify.app/. We understand that resume tools and AI content generation require closer review under your Acceptable Use Policy; we are disclosing these functions and asking for approval rather than treating the category as automatically eligible.
+
+ETMAM helps individual job seekers create their own Arabic or English CVs. Users enter or import their career information, edit and save drafts, and export PDFs. Optional AI assistance improves wording, translates text, or organizes imported content. Suggestions are shown for the user to review before applying. The service is designed not to invent employers, qualifications, achievements or numerical results. Our Telegram bot provides another interface to the same account and drafts.
+
+We do not recruit, place candidates, rank job applicants for employers, make hiring decisions, submit job applications on users behalf, sell personal data, or guarantee employment, interviews or ATS outcomes. This is software access, not a human CV-writing or consulting service.
+
+Basic is SAR 19/month or SAR 190/year, with 2 drafts and 5 successful AI operations each month. Plus is SAR 39/month or SAR 390/year, with 10 drafts and 20 operations each month. Optional one-time AI usage packs range from SAR 10 to SAR 500. These are service-use credits, not money, and cannot be withdrawn or exchanged for cash. Unused additional credits remain saved but require an active subscription to use. Customers can cancel renewal; after expiry, saved drafts remain viewable and previously approved PDFs remain downloadable.
+
+The live CV website is available for review. The ten Polar products have been created as drafts; the Polar checkout and entitlement integration is still being prepared, and no Polar payment has been taken. Identity verification and payout-account connection are complete. We will not enable customer checkout until approval and end-to-end testing, and we will update the public payment-provider disclosures before activation.
+
+Our public support email is cvsira.sa@gmail.com. We can provide a product walkthrough or a separate review account if requested. Please let us know what additional safeguards or evidence are required for this category, or whether this use case cannot be accepted.
+
+Thank you.

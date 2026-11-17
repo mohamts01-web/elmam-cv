@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env*
+!.env.example
+.netlify/
+private/
+test-results/
+*.local
+renderer/fonts.mjs
+renderer/dist/
+.supabase-cli/
+supabase/.temp/

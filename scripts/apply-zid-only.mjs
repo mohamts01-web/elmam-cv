@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import {pg} from './pg.mjs';
+const version='20261102172356';
+const file='supabase/migrations/'+version+'_etmam_zid_only_ten_operations.sql';
+const sql=fs.readFileSync(file,'utf8');
+const expected=fs.readFileSync('private/zid-command-before.sql','utf8').trim();
+const current=pg("SELECT pg_get_functiondef('public.etmam_command(uuid,text,jsonb)'::regprocedure);").trim();
+if(current!==expected) throw Error('Live function changed; inspect before applying');
+const snapshot=pg("SELECT jsonb_build_object('at',now(),'memberships',(SELECT jsonb_agg(to_jsonb(m)) FROM etmam.memberships m),'command',pg_get_functiondef('public.etmam_command(uuid,text,jsonb)'::regprocedure),'offers',(SELECT jsonb_agg(to_jsonb(o)) FROM etmam.billing_offers o));");
+fs.writeFileSync('private/before-zid-only-'+Date.now()+'.json',snapshot,{flag:'wx'});
+pg('BEGIN;'+sql+fs.readFileSync('tests/zid-ten.sql','utf8')+'ROLLBACK;');
+console.log('SQL redemption/renewal/ownership tests passed and rolled back.');
+const literal=s=>"'"+s.replaceAll("'","''")+"'";
+pg('BEGIN;'+sql+`INSERT INTO supabase_migrations.schema_migrations(version,statements,name) VALUES('${version}',ARRAY[${literal(sql)}],'etmam_zid_only_ten_operations');COMMIT;`);
+console.log(pg("SELECT jsonb_build_object('activeZidMemberships',(SELECT count(*) FROM etmam.memberships WHERE expires>now()),'activeEightOperationPlans',(SELECT count(*) FROM etmam.memberships WHERE expires>now() AND ai_limit=8),'enabledDirectOffers',(SELECT count(*) FROM etmam.billing_offers WHERE enabled),'directBillingDisabled',(SELECT decrypted_secret::jsonb->>'ETMAM_DIRECT_BILLING_ENABLED'='false' FROM vault.decrypted_secrets WHERE name='etmam-runtime-v1'));") );

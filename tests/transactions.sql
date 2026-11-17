@@ -1,0 +1,35 @@
+DO $$DECLARE a uuid;b uuid;d jsonb;j jsonb;r jsonb;i integer;id uuid;BEGIN
+ a:=(public.etmam_command(NULL,'resolve','{"kind":"email","subject":"test-email-1"}')#>>'{}')::uuid;
+ b:=(public.etmam_command(NULL,'resolve','{"kind":"telegram","subject":"test-tg-2"}')#>>'{}')::uuid;
+ INSERT INTO etmam.codes VALUES('test-code','test','ready',now(),NULL,NULL);
+ r:=public.etmam_command(a,'redeem','{"hash":"test-code"}');IF r->'membership'->>'aiRemaining'<>'8' THEN RAISE EXCEPTION 'initial_credits';END IF;
+ r:=public.etmam_command(a,'redeem','{"hash":"test-code"}');IF r->'membership'->>'aiLimit'<>'8' THEN RAISE EXCEPTION 'replay_double_grant';END IF;
+ r:=public.etmam_command(b,'redeem','{"hash":"test-code"}');IF r->>'error'<>'code_used' THEN RAISE EXCEPTION 'code_ownership';END IF;
+ FOR i IN 1..2 LOOP d:=public.etmam_command(a,'drafts.create','{"title":"test","content":{"name":"Sample","language":"en","profile":"experienced"},"design":{"template":"classic"}}');END LOOP;id:=(d->>'id')::uuid;
+ BEGIN PERFORM public.etmam_command(a,'drafts.create','{"content":{},"design":{}}');RAISE EXCEPTION 'allowed_third';EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'draft_limit' THEN RAISE;END IF;END;
+ BEGIN PERFORM public.etmam_command(b,'drafts.get',jsonb_build_object('id',id));RAISE EXCEPTION 'ownership_leak';EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'not_found' THEN RAISE;END IF;END;
+ d:=public.etmam_command(a,'drafts.save',jsonb_build_object('id',id,'revision',1,'content',jsonb_build_object('name','Changed'),'design','{}'::jsonb));
+ BEGIN PERFORM public.etmam_command(a,'drafts.save',jsonb_build_object('id',id,'revision',1,'content','{}'::jsonb,'design','{}'::jsonb));RAISE EXCEPTION 'stale_overwrite';EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'revision_conflict' THEN RAISE;END IF;END;
+ j:=public.etmam_command(a,'jobs.create',jsonb_build_object('draftId',id,'kind','improve','consent',true,'revision',2,'idempotencyKey','failed-one'));PERFORM public.etmam_command(a,'jobs.claim',jsonb_build_object('id',j->>'id'));PERFORM public.etmam_command(a,'jobs.finish',jsonb_build_object('id',j->>'id','success',false,'error','test'));
+ FOR i IN 1..8 LOOP
+  j:=public.etmam_command(a,'jobs.create',jsonb_build_object('draftId',id,'kind','improve','consent',true,'revision',2,'idempotencyKey','op-'||i));
+  r:=public.etmam_command(a,'jobs.create',jsonb_build_object('draftId',id,'kind','improve','consent',true,'revision',2,'idempotencyKey','op-'||i));IF r->>'id'<>j->>'id' THEN RAISE EXCEPTION 'job_replay';END IF;
+  PERFORM public.etmam_command(a,'jobs.claim',jsonb_build_object('id',j->>'id'));PERFORM public.etmam_command(a,'jobs.finish',jsonb_build_object('id',j->>'id','success',true,'result',jsonb_build_object('content',jsonb_build_object('name','proposal'))));
+  PERFORM public.etmam_command(a,'jobs.finish',jsonb_build_object('id',j->>'id','success',true,'result','{}'::jsonb));
+ END LOOP;
+ r:=public.etmam_command(a,'me');IF r->'membership'->>'aiUsed'<>'8' THEN RAISE EXCEPTION 'credit_accounting';END IF;
+ BEGIN PERFORM public.etmam_command(a,'jobs.create',jsonb_build_object('draftId',id,'kind','chat','consent',true,'revision',2,'idempotencyKey','overflow'));RAISE EXCEPTION 'allowed_9';EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'ai_limit' THEN RAISE;END IF;END;
+ PERFORM public.etmam_command(a,'drafts.approve',jsonb_build_object('id',id,'revision',2));UPDATE etmam.memberships SET expires=now()-interval '1 second' WHERE account_id=a;
+ PERFORM public.etmam_command(a,'jobs.create',jsonb_build_object('draftId',id,'kind','export','revision',2,'idempotencyKey','expired-export'));
+ BEGIN PERFORM public.etmam_command(a,'drafts.save',jsonb_build_object('id',id,'revision',2,'content','{}'::jsonb,'design','{}'::jsonb));RAISE EXCEPTION 'expired_write';EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'subscription_required' THEN RAISE;END IF;END;
+ IF has_function_privilege('anon','public.etmam_command(uuid,text,jsonb)','execute') OR has_function_privilege('authenticated','public.etmam_command(uuid,text,jsonb)','execute') THEN RAISE EXCEPTION 'gateway_public';END IF;
+ IF EXISTS(SELECT 1 FROM pg_tables WHERE schemaname='etmam' AND NOT rowsecurity) THEN RAISE EXCEPTION 'missing_rls';END IF;
+ PERFORM public.etmam_command(a,'link.create','{"hash":"link-test"}');r:=public.etmam_command(b,'link.consume','{"hash":"link-test","subject":"test-tg-2"}');
+ IF r->>'id'<>a::text THEN RAISE EXCEPTION 'link_account_preservation';END IF;
+ BEGIN PERFORM public.etmam_command(a,'link.consume','{"hash":"link-test","subject":"test-tg-2"}');RAISE EXCEPTION 'link_replay';EXCEPTION WHEN OTHERS THEN IF SQLERRM<>'link_expired' THEN RAISE;END IF;END;
+ PERFORM public.etmam_command(a,'session.set',jsonb_build_object('version',0,'body','{}'::jsonb,'draftId',id,'baseRevision',2,'content',jsonb_build_object('name','Changed')));
+ PERFORM public.etmam_command(a,'drafts.delete',jsonb_build_object('id',id));
+ IF EXISTS(SELECT 1 FROM etmam.sessions WHERE account_id=a AND active_draft=(d->>'id')::uuid) OR EXISTS(SELECT 1 FROM etmam.drafts WHERE drafts.id=(d->>'id')::uuid AND account_id=a) THEN RAISE EXCEPTION 'draft_delete_failed';END IF;
+ IF (public.etmam_command(a,'me')->'membership'->>'aiUsed')::integer<>8 THEN RAISE EXCEPTION 'delete_refunded_credits';END IF;
+ RAISE NOTICE 'PASS: membership, code replay/ownership, two drafts, stale revision, AI idempotency/failure/limit, expiry/export, deletion with jobs and active bot session, RLS/gateway, identity linking';
+END$$;
